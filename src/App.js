@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import BasicModal from './Components/BasicModal';
+import CheckboxList from './Components/CheckedList';
 import CreateTaskForm from './Components/Tasks/CreateTaskForm';
-import Tasks from './Components/Tasks/Tasks';
 import "./styles.scss"
 
 
@@ -13,8 +13,8 @@ function App() {
     <div className="App">
       <div className="main-window">
         <h1>Hello, User</h1>
-        <Tasks />
-        <BasicModal></BasicModal>
+        <CheckboxList/>
+        
       </div>
     </div>
   );

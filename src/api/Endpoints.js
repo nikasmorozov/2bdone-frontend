@@ -1,6 +1,6 @@
 import HTTP from ".";
 
-const fetchAllTasks = () => HTTP.get("/tasks")
+const fetchAllTasks = () => HTTP.get("/tasks/")
     .finally(response =>
         new Promise((resolve, reject) => {
             setTimeout(() => resolve(response), 100)
@@ -8,10 +8,18 @@ const fetchAllTasks = () => HTTP.get("/tasks")
         }));
 
 const postNewTask = (task) =>
-    HTTP.post("/tasks", task)
+    HTTP.post("/tasks/", task)
     .then(response => {
         if (response.data != null) {
             console.log("Task added succesfully")
+        }
+    });
+
+const putToggleIsCompleted = (uuid) => 
+    HTTP.put(("/tasks/") + uuid)
+    .then(response => {
+        if (response.data != null) {
+            console.log("Task isCompleted toggled")
         }
     });
 
@@ -29,5 +37,6 @@ const deleteTask = (uuid) => {
 export {
     fetchAllTasks,
     postNewTask,
-    deleteTask
+    deleteTask,
+    putToggleIsCompleted
 }
