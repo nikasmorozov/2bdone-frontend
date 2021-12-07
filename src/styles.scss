@@ -1,0 +1,44 @@
+$primary-color: #041955;
+$background: #354FA1;
+$almost-black: #010319;
+$pale-blue: #3D47AF;
+
+$primary-text: #BBC2D8;
+$secondary-text: #48466B;
+
+$pink: #D103FC;
+$grey: #7D80AA;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    background-color: $almost-black;
+}
+
+.main-window {
+    padding: 30px;
+    width: 400px;
+    height: 700px;
+    border-radius: 50px;
+    background-color: $background;
+}
+
+.task {
+    margin: 10px 0 10px 0;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: $primary-color;
+}
+
+p, span, h1, h3, h6 {
+    color: white;
+    size: 5px;
+    line-height: 20px;
+}
+
+span {
+    font-size: 10px;
+}
