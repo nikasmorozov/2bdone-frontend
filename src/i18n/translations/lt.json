@@ -1,0 +1,18 @@
+{
+    "translation": {
+      "New task": "Nauja užduotis",
+      "Add task": "Pridėti užduotį",
+      "Created at": "Pridėta",
+      "Delete completed tasks": "Ištrinti užbaigtas užduotis",
+      "key with params": "Welcome to i18n {{name}} {{surname}}",
+      "amountIs": "Full amount to buy is {{price}}Eur",
+      "hello": "Sveiki, {{user}}"
+    },
+    "second": {
+      "Key": "second translate section, which param is {{count}}"
+    },
+    "product":{
+      "Key2": "Test"
+    }
+  }
+  

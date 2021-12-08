@@ -1,0 +1,18 @@
+{
+    "translation": {
+        "New task": "Новая задача",
+        "Add task": "Добавить задачу",
+        "Created at": "Добавлена",
+        "Delete completed tasks": "Удалить завершенные задачи",
+      "key with params": "Welcome to i18n {{name}} {{surname}}",
+      "amountIs": "Full amount to buy is {{price}}Eur",
+      "hello": "Sveiki, {{user}}"
+    },
+    "second": {
+      "Key": "second translate section, which param is {{count}}"
+    },
+    "product":{
+      "Key2": "Test"
+    }
+  }
+  

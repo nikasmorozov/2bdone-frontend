@@ -5,17 +5,19 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Checkbox from '@mui/material/Checkbox';
-import { deleteTask, fetchAllTasks, putToggleIsCompleted } from '../api/Endpoints';
+import { deleteTask, fetchAllTasks, putToggleIsCompleted, deleteCompletedTasksFromServer } from '../api/Endpoints';
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 import { Box } from '@mui/system';
-import { ButtonGroup, IconButton } from '@mui/material';
+import { Button, ButtonGroup, IconButton, Typography } from '@mui/material';
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
-import "../styles.scss";
 import CreateTaskForm from './Tasks/CreateTaskForm';
+import { withTranslation } from "react-i18next";
+import "../styles.scss";
 
-export default function CheckboxList() {
+const TaskList = ({ t }) => {
   const [tasks, setTasks] = useState([]);
+  const [completedTasksUuids, setCompletedTasksUuids] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [descriptionToEdit, setDescriptionToEdit] = useState('');
 
@@ -32,14 +34,6 @@ export default function CheckboxList() {
   const deleteTaskHandler = (uuid) => {
     deleteTask(uuid);
     setTasks(tasks.filter(task => task.uuid !== uuid));
-  };
-
-  const handleToggleComplete = (uuid) => {
-    putToggleIsCompleted(uuid);
-
-    const tempTask = tasks.find(task => task.uuid == uuid);
-    tempTask.isCompleted = !tempTask.isCompleted;
-    setTasks(tasks);
   };
 
   const handleToggleCompleteV2 = (uuid) => {
@@ -60,6 +54,12 @@ export default function CheckboxList() {
     console.log(newTasks);
 
     setTasks(newTasks);
+  }
+
+  const deleteCompletedTasks = () => {
+    deleteCompletedTasksFromServer(
+      tasks.filter(task => task.isCompleted).map(task => task.uuid)
+    )
   }
 
   return (
@@ -88,8 +88,15 @@ export default function CheckboxList() {
                     style={{ color: "white" }}
                   />
                 </ListItemIcon>
-                <ListItemText id={labelId} primary={`${task.description}`} />
+                <ListItemText id={labelId}
+                  disableTypography
+                  primary={<Typography type="body2"
+                    style={{ fontSize: "25px", fontWeight: "800" }}>
+                    {`${task.description}`}
+                  </Typography>}
+                />
                 <span>
+                  {t("Created at")} <br />
                   <SimpleDateTime dateFormat="YMD" dateSeparator="-" timeSeparator=":">{task.createdAt}</SimpleDateTime>
                 </span>
               </ListItemButton>
@@ -106,6 +113,11 @@ export default function CheckboxList() {
         })}
       </List>}
       <CreateTaskForm initialValue={descriptionToEdit}></CreateTaskForm>
+      <Button onClick={() => { deleteCompletedTasks() }}>
+        <h4>{t("Delete completed tasks")}</h4>
+      </Button>
     </div>
   );
 }
+
+export default withTranslation()(TaskList);

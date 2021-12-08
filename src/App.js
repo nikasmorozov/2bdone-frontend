@@ -1,23 +1,30 @@
 import React from 'react';
 import './App.css';
-import BasicModal from './Components/BasicModal';
-import CheckboxList from './Components/CheckedList';
-import CreateTaskForm from './Components/Tasks/CreateTaskForm';
 import "./styles.scss"
+import i18n from "i18next";
+import { withTranslation } from 'react-i18next';
+import { Button } from '@mui/material';
+import TaskList from './Components/TaskList';
 
+function App({ t }) {
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  }
 
-
-
-function App() {
   return (
     <div className="App">
       <div className="main-window">
-        <h1>Hello, User</h1>
-        <CheckboxList/>
-        
+        <h1>2BDONE</h1>
+        <h3>TASK MANAGER</h3>
+        <TaskList />
+        <footer>
+          <Button style={{ fontSize: "20px", color: "white" }} onClick={() => changeLanguage('en')}>EN</Button>
+          <Button style={{ fontSize: "20px", color: "white" }} onClick={() => changeLanguage('lt')}>LT</Button>
+          <Button style={{ fontSize: "20px", color: "white" }} onClick={() => changeLanguage('ru')}>RU</Button>
+        </footer>
       </div>
     </div>
   );
 };
 
-export default App;
+export default withTranslation()(App);

@@ -1,4 +1,4 @@
-$primary-color: #041955;
+$primary-color: #bbdefb;
 $background: #354FA1;
 $almost-black: #010319;
 $pale-blue: #3D47AF;
@@ -24,21 +24,47 @@ $grey: #7D80AA;
     height: 700px;
     // border-radius: 50px;
     background-color: $background;
+    height: 100vh;
 }
 
 .task {
     margin: 10px 0 10px 0;
     padding: 10px;
     border-radius: 20px;
-    background-color: $primary-color;
+    background-color: transparentize($primary-color, .5);
 }
 
-p, span, h1, h3, h6 {
+p, span, h1, h3 {
     color: white;
     size: 5px;
     line-height: 20px;
 }
 
-span {
-    font-size: 10px;
+h1 {
+    font-size: 150px;
+    line-height: 120px;
+
 }
+
+h3 {
+    font-size: 50px;
+    line-height: 40px;
+}
+
+h4 {
+    font-size: 20px;
+    color: #c62828;
+}
+
+span {
+    font-size: 12px;
+}
+
+.customButton {
+    color: white;
+}
+
+footer {
+    margin-top:calc(5% + 60px);
+    bottom: 0;
+  }

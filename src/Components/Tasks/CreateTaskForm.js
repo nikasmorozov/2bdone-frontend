@@ -1,11 +1,12 @@
 import { useFormik } from 'formik';
 import { Button, TextField } from "@mui/material";
 import { postNewTask } from '../../api/Endpoints';
+import { withTranslation } from "react-i18next";
 
-const CreateTaskForm = (props) => {
+const CreateTaskForm = ({t, initialValue}) => {
   const formik = useFormik({
     initialValues: {
-      description: props.initialValue
+      description: initialValue
     },
     onSubmit: (values) => {
       postNewTask(values)
@@ -23,14 +24,14 @@ const CreateTaskForm = (props) => {
           fullWidth
           id="description"
           name="description"
-          label="Enter a new task"
+          label={t("New task")}
           value={formik.values.description}
           onChange={formik.handleChange}
           error={formik.touched.description && Boolean(formik.errors.description)}
           helperText={formik.touched.description && formik.errors.description}
         />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Add a new task
+        {t("Add task")}
         </Button>
       </form>
     </div>
@@ -38,4 +39,4 @@ const CreateTaskForm = (props) => {
 }
 
 
-export default CreateTaskForm
+export default withTranslation()(CreateTaskForm);

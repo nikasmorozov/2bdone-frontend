@@ -24,7 +24,7 @@ const putToggleIsCompleted = (uuid) =>
     });
 
 const deleteTask = (uuid) => {
-    HTTP.delete(("/tasks/") + uuid)
+    HTTP.delete(("/tasks/delete/") + uuid)
         .then(response => {
             if (response.data != null) {
                 console.log("Task deleted succesfully")
@@ -32,11 +32,19 @@ const deleteTask = (uuid) => {
         });
 };
 
-
+const deleteCompletedTasksFromServer = (completedTasksUuids) => {
+    HTTP.post("/tasks/deletecompleted/", completedTasksUuids)
+        .then(response => {
+            if (response.data != null) {
+                console.log("Completed tasks deleted succesfully")
+            }
+        });
+};
 
 export {
     fetchAllTasks,
     postNewTask,
     deleteTask,
-    putToggleIsCompleted
+    putToggleIsCompleted,
+    deleteCompletedTasksFromServer
 }
