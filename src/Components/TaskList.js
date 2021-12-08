@@ -31,6 +31,16 @@ const TaskList = ({ t }) => {
       })
   }, []);
 
+  const updateTasks = () => {
+    fetchAllTasks()
+      .then(({ data }) => {
+        setTasks(data.tasks);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  };
+
   const deleteTaskHandler = (uuid) => {
     deleteTask(uuid);
     setTasks(tasks.filter(task => task.uuid !== uuid));
@@ -59,7 +69,8 @@ const TaskList = ({ t }) => {
   const deleteCompletedTasks = () => {
     deleteCompletedTasksFromServer(
       tasks.filter(task => task.isCompleted).map(task => task.uuid)
-    )
+    );
+    setTasks(tasks.filter(task => !task.isCompleted));
   }
 
   return (
@@ -112,7 +123,7 @@ const TaskList = ({ t }) => {
           );
         })}
       </List>}
-      <CreateTaskForm initialValue={descriptionToEdit}></CreateTaskForm>
+      <CreateTaskForm updateTasks={updateTasks} initialValue={descriptionToEdit}></CreateTaskForm>
       <Button onClick={() => { deleteCompletedTasks() }}>
         <h4>{t("Delete completed tasks")}</h4>
       </Button>

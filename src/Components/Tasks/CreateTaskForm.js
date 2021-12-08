@@ -3,7 +3,7 @@ import { Button, TextField } from "@mui/material";
 import { postNewTask } from '../../api/Endpoints';
 import { withTranslation } from "react-i18next";
 
-const CreateTaskForm = ({t, initialValue}) => {
+const CreateTaskForm = ({t, initialValue, updateTasks}) => {
   const formik = useFormik({
     initialValues: {
       description: initialValue
@@ -12,6 +12,7 @@ const CreateTaskForm = ({t, initialValue}) => {
       postNewTask(values)
       .finally(() => {
         console.log(JSON.stringify(values, null, 2));
+        updateTasks();
       })
     },
   }
