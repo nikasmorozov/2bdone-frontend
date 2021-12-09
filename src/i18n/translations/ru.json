@@ -2,7 +2,7 @@
     "translation": {
         "New task": "Новая задача",
         "Add task": "Добавить задачу",
-        "Created at": "Добавлена",
+        "Created ": "Добавлена ",
         "Delete completed tasks": "Удалить завершенные задачи",
       "key with params": "Welcome to i18n {{name}} {{surname}}",
       "amountIs": "Full amount to buy is {{price}}Eur",

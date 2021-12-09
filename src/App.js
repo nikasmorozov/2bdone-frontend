@@ -7,7 +7,6 @@ import { Button } from '@mui/material';
 import TaskList from './Components/TaskList';
 import { Provider } from 'react-redux';
 import reduxStore from "./state/store";
-import LoginPage from './Components/LoginPage';
 
 function App({ t }) {
   const changeLanguage = (lng) => {
@@ -19,8 +18,7 @@ function App({ t }) {
       {/* <LoginPage/> */}
     <div className="App">
       <div className="main-window">
-        <h1>2BDONE</h1>
-        <h3>TASK MANAGER</h3>
+        <h1>Hello, Nikas</h1>
         <TaskList />
         <footer>
           <Button style={{ fontSize: "20px", color: "white" }} onClick={() => changeLanguage('en')}>EN</Button>

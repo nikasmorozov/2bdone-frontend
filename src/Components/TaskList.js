@@ -8,7 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { deleteTask, fetchAllTasks, putToggleIsCompleted, deleteCompletedTasksFromServer } from '../api/Endpoints';
 import SimpleDateTime from 'react-simple-timestamp-to-date';
 import { Box } from '@mui/system';
-import { Button, ButtonGroup, IconButton, Typography } from '@mui/material';
+import { Button, ButtonGroup, CircularProgress, IconButton, Typography } from '@mui/material';
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
 import CreateTaskForm from './CreateTaskForm';
@@ -75,7 +75,14 @@ const TaskList = ({ t }) => {
 
   return (
     <div>
-      {isLoading ? <Box /> : <List sx={{ width: '100%' }}>
+      {isLoading ? <CircularProgress /> : <List>
+        <Box display="flex" flexDirection="row" justifyContent="space-between">
+        <h4>TODAY'S TASKS</h4>
+        <Button onClick={() => { deleteCompletedTasks() }}
+      style={{ backgroundColor: "#42a5f5", borderRadius: "10px" , lineHeight: "0px", marginTop: "20px"}}>
+        <h4>{t("Delete completed tasks")}</h4>
+      </Button>
+          </Box>
         {tasks.map((task) => {
           const labelId = `checkbox-list-label-${task.description}`;
 
@@ -96,37 +103,37 @@ const TaskList = ({ t }) => {
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ 'aria-labelledby': labelId }}
-                    style={{ color: "white" }}
+                    style={{ color: ((!task.isCompleted) ? "#e040fb" : "white") }}
                   />
                 </ListItemIcon>
-                <ListItemText id={labelId}
-                  disableTypography
-                  primary={<Typography type="body2"
-                    style={{ fontSize: "25px", fontWeight: "800" }}>
-                    {`${task.description}`}
-                  </Typography>}
-                />
-                <span>
-                  {t("Created at")} <br />
-                  <SimpleDateTime dateFormat="YMD" dateSeparator="-" timeSeparator=":">{task.createdAt}</SimpleDateTime>
-                </span>
+                <Box>
+                  <ListItemText id={labelId}
+                    disableTypography
+                    primary={<Typography type="body2"
+                      style={{ fontSize: "20px", fontWeight: "400", textDecoration: ((task.isCompleted) ? "line-through" : "") }}>
+                      {`${task.description}`}
+                    </Typography>}
+                  />
+                  <span>
+                    {t("Created ")}
+                    <SimpleDateTime dateFormat="YMD" dateSeparator="-" timeSeparator=":">{task.createdAt}</SimpleDateTime>
+                  </span>
+                </Box>
               </ListItemButton>
               <ButtonGroup>
                 <IconButton onClick={() => { setDescriptionToEdit(task.description) }}>
-                  <EditIcon style={{ color: "white" }} />
+                  <EditIcon style={{ color: ((!task.isCompleted) ? "#e040fb" : "white") }} />
                 </IconButton>
                 <IconButton onClick={() => { deleteTaskHandler(task.uuid) }}>
-                  <DeleteOutline style={{ color: "white" }} />
+                  <DeleteOutline style={{ color: ((!task.isCompleted) ? "#e040fb" : "white") }} />
                 </IconButton>
               </ButtonGroup>
             </ListItem>
           );
         })}
       </List>}
-      <CreateTaskForm updateTasks={updateTasks} initialValue={descriptionToEdit}></CreateTaskForm>
-      <Button onClick={() => { deleteCompletedTasks() }}>
-        <h4>{t("Delete completed tasks")}</h4>
-      </Button>
+      <CreateTaskForm updateTasks={updateTasks}></CreateTaskForm>
+      
     </div>
   );
 }

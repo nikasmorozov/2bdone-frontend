@@ -2,7 +2,7 @@
     "translation": {
       "New task": "Nauja užduotis",
       "Add task": "Pridėti užduotį",
-      "Created at": "Pridėta",
+      "Created ": "Pridėta ",
       "Delete completed tasks": "Ištrinti atliktas užduotis",
       "key with params": "Welcome to i18n {{name}} {{surname}}",
       "amountIs": "Full amount to buy is {{price}}Eur",
