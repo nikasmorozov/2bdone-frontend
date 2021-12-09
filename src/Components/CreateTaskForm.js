@@ -6,6 +6,7 @@ import { withTranslation } from "react-i18next";
 const CreateTaskForm = ({t, updateTasks}) => {
   const formik = useFormik({
     initialValues: {
+      description: ''
     },
     onSubmit: (values) => {
       postNewTask(values)
@@ -33,7 +34,8 @@ const CreateTaskForm = ({t, updateTasks}) => {
           helperText={formik.touched.description && formik.errors.description}
         />
         <Button style={{
-          backgroundColor: "#d500f9"
+          backgroundColor: "#d500f9",
+          borderRadius: "0"
         }} variant="contained" fullWidth type="submit">
         {t("Add task")}
         </Button>

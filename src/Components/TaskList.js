@@ -77,12 +77,12 @@ const TaskList = ({ t }) => {
     <div>
       {isLoading ? <CircularProgress /> : <List>
         <Box display="flex" flexDirection="row" justifyContent="space-between">
-        <h4>TODAY'S TASKS</h4>
-        <Button onClick={() => { deleteCompletedTasks() }}
-      style={{ backgroundColor: "#42a5f5", borderRadius: "10px" , lineHeight: "0px", marginTop: "20px"}}>
-        <h4>{t("Delete completed tasks")}</h4>
-      </Button>
-          </Box>
+          <h2>TODAY'S TASKS</h2>
+          <Button onClick={() => { deleteCompletedTasks() }}
+            style={{ backgroundColor: "#d500f9", lineHeight: "0px", marginTop: "20px", borderRadius: "0" }}>
+            <h4>{t("Delete completed tasks")}</h4>
+          </Button>
+        </Box>
         {tasks.map((task) => {
           const labelId = `checkbox-list-label-${task.description}`;
 
@@ -133,7 +133,7 @@ const TaskList = ({ t }) => {
         })}
       </List>}
       <CreateTaskForm updateTasks={updateTasks}></CreateTaskForm>
-      
+
     </div>
   );
 }
