@@ -11,13 +11,13 @@ import { Box } from '@mui/system';
 import { Button, ButtonGroup, IconButton, Typography } from '@mui/material';
 import DeleteOutline from '@mui/icons-material/DeleteOutline';
 import EditIcon from '@mui/icons-material/Edit';
-import CreateTaskForm from './Tasks/CreateTaskForm';
+import CreateTaskForm from './CreateTaskForm';
 import { withTranslation } from "react-i18next";
 import "../styles.scss";
 
 const TaskList = ({ t }) => {
   const [tasks, setTasks] = useState([]);
-  const [completedTasksUuids, setCompletedTasksUuids] = useState([]);
+  // const [completedTasksUuids, setCompletedTasksUuids] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [descriptionToEdit, setDescriptionToEdit] = useState('');
 

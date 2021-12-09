@@ -5,6 +5,9 @@ import i18n from "i18next";
 import { withTranslation } from 'react-i18next';
 import { Button } from '@mui/material';
 import TaskList from './Components/TaskList';
+import { Provider } from 'react-redux';
+import reduxStore from "./state/store";
+import LoginPage from './Components/LoginPage';
 
 function App({ t }) {
   const changeLanguage = (lng) => {
@@ -12,6 +15,8 @@ function App({ t }) {
   }
 
   return (
+    <Provider store={reduxStore}>
+      {/* <LoginPage/> */}
     <div className="App">
       <div className="main-window">
         <h1>2BDONE</h1>
@@ -24,6 +29,7 @@ function App({ t }) {
         </footer>
       </div>
     </div>
+    </Provider>
   );
 };
 

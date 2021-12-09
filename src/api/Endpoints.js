@@ -1,5 +1,7 @@
 import HTTP from ".";
 
+const login = (loginData) => HTTP.post('/login', loginData)
+
 const fetchAllTasks = () => HTTP.get("/tasks/")
     .finally(response =>
         new Promise((resolve, reject) => {
@@ -42,6 +44,7 @@ const deleteCompletedTasksFromServer = (completedTasksUuids) => {
 };
 
 export {
+    login,
     fetchAllTasks,
     postNewTask,
     deleteTask,
